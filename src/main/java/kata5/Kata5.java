@@ -3,6 +3,7 @@ package kata5;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -12,13 +13,26 @@ public class Kata5 {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         connect();
-        SelectApp app = new SelectApp();
-        app.selectAll();
+        createTable(DriverManager.getConnection("jdbc:sqlite:KATA5.db"));
+        //SelectApp app = new SelectApp();
+        //app.selectAll();
     }
+    
+    private static void createTable(Connection conection)throws SQLException{
+        
+        String sentence = """
+            CREATE TABLE IF NOT EXISTS EMAIL(
+            Id integer primary key autoincrement,
+            Mail text NOT NULL);""";
+        
+                Statement stmt = conection.createStatement();
+        stmt.execute(sentence);
+    }    
     
     private static void connect() {
         Connection conn = null;
