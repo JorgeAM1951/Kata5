@@ -16,18 +16,11 @@ import java.sql.Statement;
  */
 public class Kata5 {
 
-    /**
-     * @param args the command line arguments
-     * @throws java.sql.SQLException
-     * @throws java.io.FileNotFoundException
-     */
+
     public static void main(String[] args) throws SQLException, 
             FileNotFoundException, IOException {
-        // TODO code application logic here
         connect();
         createTable(DriverManager.getConnection("jdbc:sqlite:KATA5.db"));
-        //SelectApp app = new SelectApp();
-        //app.selectAll();
     }
     
     private static void createTable(Connection conection)throws 
